@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Afiches</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- NAV -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Inicio</a></li>
+                <li><a href="/subir/index.html">Subir Afiche</a></li>
+                <li><a href="/misafichess/index.html" class="active">Mis Afiches</a></li>
+                <li><a href="/contacto/index.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Mis Afiches</h1>
+
+        <!-- Galería en Grid -->
+        <div class="galeria" id="galeriaAfiches"></div>
+    </main>
+
+    <script>
+        const galeria = document.getElementById('galeriaAfiches');
+
+        // Mostrar afiches guardados en localStorage
+        function mostrarAfiches() {
+            galeria.innerHTML = "";
+            let afiches = JSON.parse(localStorage.getItem('afiches')) || [];
+
+            if (afiches.length === 0) {
+                galeria.innerHTML = "<p>No has subido ningún afiche aún.</p>";
+            } else {
+                // Recorremos de más reciente a más antiguo
+                afiches.slice().reverse().forEach((afiche, index) => {
+                    const div = document.createElement('div');
+                    div.classList.add('afiche');
+                    div.innerHTML = `
+            <img src="${afiche.imagen}" alt="${afiche.titulo}">
+            <h3>${afiche.titulo}</h3>
+            <button onclick="eliminarAfiche(${afiches.length - 1 - index})">❌ Eliminar</button>
+          `;
+                    galeria.appendChild(div);
+                });
+            }
+        }
+
+        // Eliminar afiche por índice
+        function eliminarAfiche(index) {
+            let afiches = JSON.parse(localStorage.getItem('afiches')) || [];
+            afiches.splice(index, 1); // borra 1 en esa posición
+            localStorage.setItem('afiches', JSON.stringify(afiches));
+            mostrarAfiches();
+        }
+
+        // Inicializar al cargar la página
+        mostrarAfiches();
+    </script>
+</body>
+
+</html>
