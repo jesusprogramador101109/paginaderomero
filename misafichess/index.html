@@ -10,16 +10,17 @@
 
 <body>
     <!-- NAV -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/index.html">Inicio</a></li>
-                <li><a href="/subir/index.html">Subir Afiche</a></li>
-                <li><a href="/misafichess/index.html" class="active">Mis Afiches</a></li>
-                <li><a href="/contacto/index.html">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../subir/index.html">Subir Afiche</a></li>
+            <li><a href="../misafichess/index.html" class="active">Mis Afiches</a></li>
+            <li><a href="../contacto/index.html">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
 
     <main>
         <h1>Mis Afiches</h1>
@@ -47,7 +48,7 @@
             <img src="${afiche.imagen}" alt="${afiche.titulo}">
             <h3>${afiche.titulo}</h3>
             <button onclick="eliminarAfiche(${afiches.length - 1 - index})">❌ Eliminar</button>
-          `;
+            `;
                     galeria.appendChild(div);
                 });
             }
